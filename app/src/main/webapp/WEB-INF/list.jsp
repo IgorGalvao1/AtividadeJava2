@@ -10,23 +10,6 @@
     <body>
         <div class="container">
             <h1>Livros</h1>
-            <a href="/insertgenero" class="btn btn-success">Adicionar Gênero</a>
-            <table class="table">
-                <tr>
-                    <th>Id</th>
-                    <th>Genero</th>
-                </tr>
-                <c:forEach var="item" items="${genero}">
-                    <tr>
-                        <td>${item.id}</td>
-                        <td>${item.genero}</td>
-                        <td>
-                            <a href="/update?id=${item.id}" class="btn btn-warning">Editar</a>
-                            <a href="/delete?id=${item.id}" class="btn btn-danger">Excluir</a>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </table>
             <a href="/insert" class="btn btn-primary">Novo Livro</a>
             <table class="table">
                 <tr>

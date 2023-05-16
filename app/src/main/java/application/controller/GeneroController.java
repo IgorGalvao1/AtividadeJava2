@@ -22,7 +22,7 @@ public class GeneroController {
     @RequestMapping("/genero")
     public String list(Model model) {
         model.addAttribute("generos", generoRepo.findAll());
-        return "WEB-INF/list_genero.jsp";
+        return "WEB-INF/listgenero.jsp";
     }
 
     @RequestMapping("/insertgenero")
@@ -31,16 +31,16 @@ public class GeneroController {
     }
 
     @RequestMapping(value = "/insertgenero", method = RequestMethod.POST)
-    public String insert(@RequestParam("nome") String nome) {
+    public String insert(@RequestParam("Genero") String titulo) {
         Genero genero = new Genero();
-        genero.setGenero(nome);
+        genero.setNome(titulo);
 
         generoRepo.save(genero);
 
-        return "redirect:/livro";
+        return "redirect:/genero";
     }
 
-    @RequestMapping("/update_genero")
+    @RequestMapping("/updategenero")
     public String update(Model model, @RequestParam("id") int id) {
         Optional<Genero> genero = generoRepo.findById(id);
 
@@ -49,26 +49,27 @@ public class GeneroController {
         }
 
         model.addAttribute("genero", genero.get());
-        return "WEB-INF/update_genero.jsp";
+        return "WEB-INF/updategenero.jsp";
     }
 
-    @RequestMapping(value = "/update_genero", method = RequestMethod.POST)
+    @RequestMapping(value = "/updategenero", method = RequestMethod.POST)
     public String update(
-        @RequestParam("nome") String nome,
+        @RequestParam("genero") String Genero,
         @RequestParam("id") int id
+        
     ) {
         Optional<Genero> genero = generoRepo.findById(id);
         if(!genero.isPresent()) {
             return "redirect:/genero";
         }
 
-        genero.get().setGenero(nome);
+        genero.get().setNome(titulo);
 
         generoRepo.save(genero.get());
         return "redirect:/genero";
     }
 
-    @RequestMapping("/delete_genero")
+    @RequestMapping("/deletegenero")
     public String delete(Model model, @RequestParam("id") int id) {
         Optional<Genero> genero = generoRepo.findById(id);
 
@@ -77,12 +78,13 @@ public class GeneroController {
         }
 
         model.addAttribute("genero", genero.get());
-        return "WEB-INF/delete_genero.jsp";
+        return "WEB-INF/deletegenero.jsp";
     }
 
-    @RequestMapping(value = "/delete_genero", method = RequestMethod.POST)
+    @RequestMapping(value = "/deletegenero", method = RequestMethod.POST)
     public String delete(@RequestParam("id") int id) {
         generoRepo.deleteById(id);
         return "redirect:/genero";
     }
+
 }

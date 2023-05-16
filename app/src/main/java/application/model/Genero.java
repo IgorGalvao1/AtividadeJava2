@@ -12,14 +12,13 @@ public class Genero {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
-    private String genero;
+    private String nome;
 
-   
-    public String getGenero() {
-        return genero;
+    public String getNome() {
+        return nome;
     }
-    public void setGenero(String genero) {
-        this.genero = genero;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     public int getId() {
         return id;
