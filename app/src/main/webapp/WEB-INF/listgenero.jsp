@@ -21,7 +21,7 @@
                 <c:forEach var="item" items="${generos}">
                     <tr>
                         <td>${item.id}</td>
-                        <td>${item.genero}</td>
+                        <td>${item.nometitulo}</td>
                         <td>
                             <a href="/updategenero?id=${item.id}" class="btn btn-warning">Editar</a>
                             <a href="/deletegenero?id=${item.id}" class="btn btn-danger">Excluir</a>

@@ -10,85 +10,79 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import application.model.Livro;
-import application.model.LivroRepository;
+import application.model.Genero;
+import application.model.GeneroRepository;
 
 @Controller
 public class GeneroController {
 
     @Autowired
-    private LivroRepository livroRepo;
+    private GeneroRepository generoRepo;
 
     @RequestMapping("/genero")
     public String list(Model model) {
-        model.addAttribute("generos", livroRepo.findAll());
+        model.addAttribute("generos", generoRepo.findAll());
         return "WEB-INF/listgenero.jsp";
     }
 
-    @RequestMapping("/insert")
+    @RequestMapping("/insertgenero")
     public String insert() {
-        return "WEB-INF/insert.jsp";
+        return "WEB-INF/insertgenero.jsp";
     }
 
-    @RequestMapping(value = "/insert", method = RequestMethod.POST)
-    public String insert(@RequestParam("titulo") String titulo,@RequestParam("genero") String genero,@RequestParam("isbn") String isbn) {
-        Livro livro = new Livro();
-        livro.setTitulo(titulo);
-        livro.setGenero(genero);
-        livro.setIsbn(isbn);
+    @RequestMapping(value = "/insertgenero", method = RequestMethod.POST)
+    public String insert(@RequestParam("nometitulo") String nometitulo) {
+        Genero genero = new Genero();
+        genero.setNometitulo(nometitulo);
 
-        livroRepo.save(livro);
+        generoRepo.save(genero);
 
-        return "redirect:/livro";
+        return "redirect:/genero";
     }
 
-    @RequestMapping("/update")
+    @RequestMapping("/updategenero")
     public String update(Model model, @RequestParam("id") int id) {
-        Optional<Livro> livro = livroRepo.findById(id);
+        Optional<Genero> genero = generoRepo.findById(id);
 
-        if(!livro.isPresent()) {
-            return "redirect:/livro";
+        if(!genero.isPresent()) {
+            return "redirect:/genero";
         }
 
-        model.addAttribute("livro", livro.get());
-        return "WEB-INF/update.jsp";
+        model.addAttribute("genero", genero.get());
+        return "WEB-INF/updategenero.jsp";
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/updategenero", method = RequestMethod.POST)
     public String update(
-        @RequestParam("titulo") String titulo,
         @RequestParam("id") int id,
-        @RequestParam("genero") String genero,
-        @RequestParam("isbn") String isbn
+        @RequestParam("nometitulo") String nometitulo
     ) {
-        Optional<Livro> livro = livroRepo.findById(id);
-        if(!livro.isPresent()) {
-            return "redirect:/livro";
+        Optional<Genero> genero = generoRepo.findById(id);
+        if(!genero.isPresent()) {
+            return "redirect:/genero";
         }
 
-        livro.get().setTitulo(titulo);
-        livro.get().setGenero(genero);
-        livro.get().setIsbn(isbn);
+        genero.get().setNometitulo(nometitulo);
 
-        livroRepo.save(livro.get());
-        return "redirect:/livro";
+        generoRepo.save(genero.get());
+        return "redirect:/genero";
     }
 
-    @RequestMapping("/delete")
+    @RequestMapping("/deletegenero")
     public String delete(Model model, @RequestParam("id") int id) {
-        Optional<Livro> livro = livroRepo.findById(id);
+        Optional<Genero> genero = generoRepo.findById(id);
 
-        if(!livro.isPresent()) {
-            return "redirect:/livro";
+        if(!genero.isPresent()) {
+            return "redirect:/genero";
         }
 
-        model.addAttribute("livro", livro.get());
-        return "WEB-INF/delete.jsp";
+        model.addAttribute("genero", genero.get());
+        return "WEB-INF/deletegenero.jsp";
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/deletegenero", method = RequestMethod.POST)
     public String delete(@RequestParam("id") int id) {
-        livroRepo.deleteById(id);
-        return "redirect:/livro";
+        generoRepo.deleteById(id);
+        return "redirect:/genero";
     }
 }

@@ -8,12 +8,12 @@
     </head>
     <body>
         <div class="container">
-            <h1>Novo livro</h1>
+            <h1>Novo gênero</h1>
             <a href="/genero" class="btn btn-primary">Voltar</a>
-            <form action="/insertGenero" method="post">
+            <form action="/insertgenero" method="post">
                 <div class="form-group">
-                    <label for="titulo">Titulo</label>
-                    <input type="text" name="titulo" class="form-control">
+                    <label for="nometitulo">Gênero</label>
+                    <input type="text" name="nometitulo" class="form-control">
                 </div>
                 <br>
                 <button type="submit" class="btn btn-success">Salvar</button>
