@@ -7,7 +7,7 @@
         <link href="/css/bootstrap.min.css" rel="stylesheet" >
     </head>
     <body>
-        <div class="conatiner">
+        <div class="container">
             <h1>Excluir Gênero</h1>
             <a href="/genero" class="btn btn-primary">Voltar</a>
             <p>Deseja remover o gênero <strong>"${genero.nometitulo}"</strong>>?</p>

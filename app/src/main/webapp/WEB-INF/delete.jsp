@@ -7,7 +7,7 @@
         <link href="/css/bootstrap.min.css" rel="stylesheet" >
     </head>
     <body>
-        <div class="conatiner">
+        <div class="container">
             <h1>Excluir Livro</h1>
             <a href="/livro" class="btn btn-primary">Voltar</a>
             <p>Deseja remover o livro <strong>"${livro.titulo}"</strong>>?</p>
