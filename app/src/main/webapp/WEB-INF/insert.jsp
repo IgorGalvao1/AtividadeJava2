@@ -16,7 +16,11 @@
                     <label for="titulo">Título</label>
                     <input type="text" name="titulo" class="form-control" />
                     <label for="genero">Gênero</label>
-                    <select class="form-control" name="genero"></select>
+                    <select class="form-control" name="genero">
+                        <c:forEach var="item" items="${generos}">
+                            <option value="${item.id}">${item.nometitulo}</option>
+                        </c:forEach>
+                    </select>
                     <label for="isbn">isbn</label>
                     <input type="text" name="isbn" class="form-control" />
                 </div>
